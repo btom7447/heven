@@ -1,25 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from 'react';
+import { ToastContainer } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
+import { auth } from './firebaseConfig';
+import { onAuthStateChanged } from 'firebase/auth';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import LandingPage from './Pages/LandingPage';
+import Header from './Components/Header';
+import ProfilePage from './Pages/ProfilePage';
 
-function App() {
+const App = () => {
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser); // User state will reflect the persisted session
+    });
+    return () => unsubscribe();
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Router>
+        <Header user={user} />
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/user" element={<ProfilePage />} />
+        </Routes>
+      </Router>
+      <ToastContainer />
     </div>
   );
-}
+};
 
 export default App;

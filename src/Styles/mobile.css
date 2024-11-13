@@ -1,0 +1,193 @@
+@media screen and (max-width: 450px) { 
+
+    /* ROOT COLORS */
+    :root {
+        --black: #000;
+        --white: #fff;
+        --dark: #2C2C2C;
+        --accent: #ebeeee;
+        --brown: #806549;
+        --ash: #d1d1d1;
+        --gray: #707070;
+        --turquoise: #40E0D0;
+    }
+    .Toastify__toast-container {
+        top: 55px !important;
+        z-index: 9999; 
+        width: 99dvw !important;
+    }
+    .hamburger {
+        display: block;
+    }
+    header .top-header {
+        padding: 10px 20px;
+    }
+    header .navbar {
+        width: 100%;
+        padding: 10px 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between
+    }
+    header .nav-links {
+        position: fixed;
+        top: 105px;
+        left: 0;
+        background-color: var(--accent);
+        color: var(--dark);
+        padding: 20px;
+        padding-bottom: 50px;
+        width: 100%;
+        height: calc(100dvh - 105px);
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    header .nav-links ul {
+        width: 100%;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
+    header .nav-links li {
+        width: 100%;
+        padding: 10px;
+        border-bottom: solid 1px var(--ash);
+    }
+    header .nav-links ul li a::after {
+        bottom: -10px;
+    }
+    header .nav-pops {
+        padding: 10px 30px;
+        position: unset;
+        width: 100%;
+        margin-top: auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 20px;
+    }
+    header .navbar .nav-pops svg {
+        width: 20px;
+        height: 20px;
+        fill: var(--dark) !important;
+        color: var(--dark) !important;
+    }
+    /* AUTHENTICATION MODAL */
+    .auth-modal .modal-content {
+        width: 85%;
+        max-width: 500px;
+        height: 80dvh;
+        padding: 50px 30px;
+        overflow-y: scroll;
+        padding-top: 100px;
+    }
+    
+    /* HERO SECTION */
+    .hero-section {
+        height: 100dvh;
+        padding: 0;
+    }
+    .hero-image-container::before {
+        height: 100dvh;
+        background: rgba(0, 0, 0, 0.8);
+    }
+    .hero-section .caption {
+        top: 35%;
+        left: 0%;   
+        padding: 30px;
+    }
+    .hero-section .caption h1 {
+        font-size: 40px;
+    }
+    .hero-section .caption h5 {
+        line-height: 1.5;
+    }
+    
+    /* CATEGORY GRID */
+    .category-grid {
+        height: fit-content;
+        padding: 50px 30px;
+        grid-template-columns: 1fr; 
+        grid-template-rows: 1fr; 
+    }
+    .category-content {
+        left: 8%;
+    }
+    
+    /* FEATURED PRODUCTS */
+    .featured-products {
+        padding: 50px 0px;
+        padding-bottom: 100px;
+    }
+    .featured-products h2 {
+        font-size: 30px;
+        text-align: center;
+        margin-bottom: 30px;
+    }
+    
+    /* HERO SLIDE */
+    .featured-carousel {
+        width: 100%;
+        padding: 0px 30px;
+    }
+    .featured-carousel .splide__pagination__page {
+        display: none;
+    }
+    
+    /* PRODUCT MODAL */
+    .modal-backdrop .modal-content {
+        width: 85%;
+        height: 85dvh;
+    }
+    .modal-backdrop .modal-content .product-detail {
+        flex-direction: column;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        padding-bottom: 100px;
+    }
+    .modal-backdrop .modal-content .product-detail img {
+        width: 100% !important;
+        height: 300px;
+    }
+    .modal-backdrop .modal-content .product-detail > div {
+        width: 100%;
+        height: 100%;
+        padding: 30px;
+        overflow-y:unset;
+    }
+    .modal-backdrop .product-detail > div  h2 {
+        font-size: 22px;
+    }
+    .modal-backdrop .add-cart {
+        flex-wrap: wrap;
+    }
+    .modal-backdrop .add-cart .order-btn {
+        background-color: transparent;
+        border: solid 1px var(--ash);
+        padding: 10px;
+        margin: 10px 20px;
+    }
+    .modal-backdrop .add-cart .save-btn {
+        margin: 10px 20px;
+    }
+    
+    /* * {
+        outline: red solid 1px;
+    } */
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
