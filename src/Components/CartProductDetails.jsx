@@ -84,7 +84,17 @@ const CartProductDetails = ({
         <div className="cart-product-details">
             {cartItems.length === 0 ? (
                 <div className="no-items-message">
-                    <p>No Items in Cart</p>
+                    <p
+                    style={{
+                        height: '30dvh',
+                        textAlign: 'center',
+                        fontSize: '1.5rem',
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center'
+                    }}
+                    >No Items in Cart</p>
+                    
                 </div>
             ) : (
                 <table className="cart-table">

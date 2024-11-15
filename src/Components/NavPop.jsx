@@ -37,11 +37,12 @@ const NavPop = ({ user, setUser }) => {
     };
 
     const handleCartClick = () => {
-        if (user) {
-            navigate("/cart"); // Redirect to cart page if logged in
-        } else {
-            setIsModalOpen(true); // Show login modal if not logged in
-        }
+        // if (user) {
+        //     navigate("/cart"); // Redirect to cart page if logged in
+        // } else {
+        //     setIsModalOpen(true); // Show login modal if not logged in
+        // }
+        navigate("/cart");
     };
 
     return (
