@@ -7,7 +7,6 @@ import { FaGoogle } from 'react-icons/fa';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { motion } from 'framer-motion';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate for redirect
 
 const AuthModal = ({ isOpen, closeModal, setUser }) => {
   const [isSignup, setIsSignup] = useState(false);
@@ -18,7 +17,6 @@ const AuthModal = ({ isOpen, closeModal, setUser }) => {
   const [isForgotPassword, setIsForgotPassword] = useState(false);
   const [error, setError] = useState('');
 
-  const navigate = useNavigate(); // Set up the navigate function
 
   const toggleMode = () => {
     setIsSignup(!isSignup);
@@ -33,36 +31,37 @@ const AuthModal = ({ isOpen, closeModal, setUser }) => {
     }
 
     try {
-      // Set persistence for "Remember Me" first
+      // Set persistence for "Remember Me" option
       await setPersistence(auth, rememberMe ? browserLocalPersistence : browserSessionPersistence);
 
       let userCredential;
       if (isSignup) {
-        userCredential = await createUserWithEmailAndPassword(auth, email, password); // Using modular API
+        userCredential = await createUserWithEmailAndPassword(auth, email, password);
         toast.success("Sign Up Successful!");
       } else {
-        userCredential = await signInWithEmailAndPassword(auth, email, password); // Using modular API
+        userCredential = await signInWithEmailAndPassword(auth, email, password);
         toast.success("Login Successful!");
       }
 
-      setUser(userCredential.user); // Set the user after successful login/signup
+      setUser(userCredential.user); // Update user state in parent
       closeModal(); // Close modal on success
-      navigate('/user'); // Redirect to user page after login
     } catch (error) {
-      setError('Authentication error: ' + error.message);
+      setError("Authentication error: " + error.message);
       toast.error(error.message);
     }
   };
 
   const handleGoogleSignIn = async () => {
     try {
-      const userCredential = await signInWithPopup(auth, googleProvider); // Using modular API
+      // Set persistence before Google Sign-In
+      await setPersistence(auth, rememberMe ? browserLocalPersistence : browserSessionPersistence);
+
+      const userCredential = await signInWithPopup(auth, googleProvider);
       toast.success("Google Sign In Successful!");
-      setUser(userCredential.user); // Set the user after successful Google sign-in
+      setUser(userCredential.user); // Update user state in parent
       closeModal();
-      navigate('/user'); // Redirect to user page after login
     } catch (error) {
-      setError('Google sign-in error: ' + error.message);
+      setError("Google sign-in error: " + error.message);
       toast.error(error.message);
     }
   };
@@ -160,7 +159,9 @@ const AuthModal = ({ isOpen, closeModal, setUser }) => {
 
       </motion.div>
     </div>
+    
   ) : null;
+  
 };
 
 export default AuthModal;

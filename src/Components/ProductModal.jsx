@@ -96,10 +96,30 @@ const ProductModal = ({ loading, product, onClose }) => {
                     <XMarkIcon className="w-6 h-6 text-black" />
                 </button>
                 <div className="product-detail">
-                    <img src={product.image[0]} alt={product.name} style={{ width: "100%" }} />
-                    <div>
+                    <div className="image-box">
+                        <img src={product.image[0]} alt={product.name} style={{ width: "100%" }} />
+                        {product.discount && (
+                            <div className="discount-box">
+                                {`${(product.discount * 100).toFixed(0)}% OFF`}
+                            </div>
+                        )}
+                    </div>
+                    <div className="product-det">
                         <h2>{product.name}</h2>
-                        <h5>₦ {product.price.toLocaleString()}</h5>
+                        <div className="product-prices">
+                            {product.discount ? (
+                                <>
+                                    <h5 className="original-price">
+                                        ₦ {product.price.toLocaleString()}
+                                    </h5>
+                                    <h5 className="discounted-price">
+                                        ₦ {(product.price * (1 - product.discount)).toLocaleString()}
+                                    </h5>
+                                </>
+                            ) : (
+                                <h5>₦ {product.price.toLocaleString()}</h5>
+                            )}
+                        </div>
                         <p>{product.description}</p>
                         <div className="add-cart">
                             <button type="button" className="order-btn" onClick={handleDecreaseQuantity}>
@@ -117,6 +137,7 @@ const ProductModal = ({ loading, product, onClose }) => {
                             </button>
                         </div>
                         <h6>Categories: {product.categories.join(", ")}</h6>
+                        <hr /><hr /><hr />
                     </div>
                 </div>
             </motion.div>

@@ -9,6 +9,7 @@ import Header from './Components/Header';
 import ProfilePage from './Pages/ProfilePage';
 import Footer from './Components/Footer';
 import ProductPage from './Pages/ProductPage';
+import CartPage from './Pages/CartPage';
 
 const App = () => {
   const [user, setUser] = useState(null);
@@ -28,6 +29,7 @@ const App = () => {
           <Route path="/" element={<LandingPage />} />
           <Route path="/user" element={<ProfilePage />} />
           <Route path="/products" element={<ProductPage />} />
+          <Route path="/cart" element={<CartPage />} />
         </Routes>
         <Footer />
       </Router>

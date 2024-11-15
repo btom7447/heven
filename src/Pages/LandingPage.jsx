@@ -26,6 +26,7 @@ const LandingPage = () => {
                     id: record.product_id,
                     name: record.fields.product_name,
                     price: record.fields.price,
+                    discount: record.fields.discount,
                     description: record.fields.product_description,
                     quantity: record.fields.stock_quantity,
                     categories: record.fields.product_category_name || [],

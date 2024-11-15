@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { motion, useAnimation } from "framer-motion";
-import { FaShoppingBasket, FaRegHeart, FaSearch } from "react-icons/fa";
+import { FaShoppingBasket, FaRegHeart, FaSearchPlus } from "react-icons/fa";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ProductModal from "./ProductModal";
@@ -65,6 +65,11 @@ const ProductCard = ({ product, loading }) => {
                     <div className="product-image">
                         <img src={product.image[0]} alt={product.name} />
                     </div>
+                    {product.discount && (
+                        <div className="discount-box">
+                            {`- ${(product.discount * 100).toFixed(0)}%`}
+                        </div>
+                    )}
 
                     <div className="product-options">
                         <motion.button
@@ -86,7 +91,7 @@ const ProductCard = ({ product, loading }) => {
                             initial={{ y: 30, opacity: 0 }}
                             onClick={() => setModalOpen(true)}
                         >
-                            <FaSearch className="w-6 h-6 text-black" />
+                            <FaSearchPlus className="w-6 h-6 text-black" />
                         </motion.button>
 
                         <motion.button
@@ -103,7 +108,20 @@ const ProductCard = ({ product, loading }) => {
                 </div>
 
                 <h5>{product.name}</h5>
-                <h4>₦ {product.price.toLocaleString()}</h4>
+                <div className="product-prices">
+                    {product.discount ? (
+                        <>
+                            <h4 className="original-price">
+                                ₦ {product.price.toLocaleString()}
+                            </h4>
+                            <h4 className="discounted-price">
+                                ₦ {(product.price * (1 - product.discount)).toLocaleString()}
+                            </h4>
+                        </>
+                    ) : (
+                        <h4 className="normal-price">₦ {product.price.toLocaleString()}</h4>
+                    )}
+                </div>
             </div>
 
             {isModalOpen && (

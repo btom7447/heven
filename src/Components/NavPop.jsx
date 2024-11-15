@@ -9,6 +9,7 @@ const NavPop = ({ user, setUser }) => {
     const [cartCount, setCartCount] = useState(0);
     const navigate = useNavigate();
 
+    // Update wishlist and cart counts
     const updateCounts = () => {
         const wishlist = JSON.parse(sessionStorage.getItem("wishlist")) || [];
         const cart = JSON.parse(sessionStorage.getItem("cart")) || [];
@@ -18,11 +19,11 @@ const NavPop = ({ user, setUser }) => {
 
     useEffect(() => {
         updateCounts();
-
+    
         // Listen for custom 'storageUpdate' events
         const handleStorageUpdate = () => updateCounts();
         window.addEventListener("storageUpdate", handleStorageUpdate);
-
+    
         // Clean up event listener on unmount
         return () => window.removeEventListener("storageUpdate", handleStorageUpdate);
     }, []);
@@ -32,6 +33,14 @@ const NavPop = ({ user, setUser }) => {
             navigate("/user");
         } else {
             setIsModalOpen(true);
+        }
+    };
+
+    const handleCartClick = () => {
+        if (user) {
+            navigate("/cart"); // Redirect to cart page if logged in
+        } else {
+            setIsModalOpen(true); // Show login modal if not logged in
         }
     };
 
@@ -49,7 +58,10 @@ const NavPop = ({ user, setUser }) => {
 
             {/* Cart Icon with Count Bubble */}
             <div className="icon-container">
-                <FaShoppingBasket className="icon cart-icon w-6 h-6 text-black" />
+                <FaShoppingBasket
+                    className="icon cart-icon w-6 h-6 text-black"
+                    onClick={handleCartClick}
+                />
                 {cartCount > 0 && (
                     <span className="bubble">{cartCount}</span>
                 )}
