@@ -4,14 +4,17 @@ import CategoryGrid from "../Components/CategoryGrid";
 import FeaturedProducts from "../Components/FeaturedProducts";
 import NewsLetter from "../Components/NewsLetter";
 import HeroSection from "../Components/HeroSection";
+import TestimonialSection from "../Components/TestimonialSection";
 
 const base = new Airtable({ apiKey: process.env.REACT_APP_AIRTABLE_API_KEY }).base(process.env.REACT_APP_AIRTABLE_BASE_ID);
 
 const LandingPage = () => {
     const [products, setProducts] = useState([]);
     const [categories, setCategories] = useState([]);
-    const [loadingProducts, setLoadingProducts] = useState(true); // Loading state for products
-    const [loadingCategories, setLoadingCategories] = useState(true); // Loading state for categories
+    const [reviews, setReviews] = useState([]);
+    const [loadingProducts, setLoadingProducts] = useState(true); 
+    const [loadingCategories, setLoadingCategories] = useState(true);
+    const [loadingReviews, setLoadingReviews] = useState(true);
 
     useEffect(() => {
         setLoadingProducts(true);
@@ -64,12 +67,38 @@ const LandingPage = () => {
             });
     }, []);
 
+    useEffect(() => {
+        setLoadingReviews(true);
+        base("Reviews")
+            .select({ view: "Grid view" })
+            .all()
+            .then(records => {
+                const fetchedReviews = records.map(record => ({
+                    id: record.review_id,
+                    name: record.fields.customer_name,
+                    text: record.fields.review_text,
+                    products: record.fields.reivew_products || [],
+                    rating: record.fields.product_rating,
+                    date: record.fields.review_date,
+                }));
+    
+                setReviews(fetchedReviews);
+                setLoadingReviews(false); // Stop loading after categories are fetched
+            })
+            .catch(err => {
+                console.error("Error fetching reviews:", err);
+                setLoadingReviews(false); // Stop loading in case of an error
+            });
+    }, []);
+
     return (
         <div className="page">
             <HeroSection />
             <CategoryGrid categories={categories} loading={loadingCategories} />
             <FeaturedProducts products={products} loading={loadingProducts} />
             <NewsLetter />
+            <TestimonialSection reviews={reviews} loading={loadingReviews} />
+            
         </div>
     );
 };

@@ -7,6 +7,8 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import LandingPage from './Pages/LandingPage';
 import Header from './Components/Header';
 import ProfilePage from './Pages/ProfilePage';
+import Footer from './Components/Footer';
+import ProductPage from './Pages/ProductPage';
 
 const App = () => {
   const [user, setUser] = useState(null);
@@ -25,7 +27,9 @@ const App = () => {
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/user" element={<ProfilePage />} />
+          <Route path="/products" element={<ProductPage />} />
         </Routes>
+        <Footer />
       </Router>
       <ToastContainer />
     </div>

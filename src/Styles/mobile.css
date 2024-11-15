@@ -29,6 +29,22 @@
         align-items: center;
         justify-content: space-between
     }
+    header .sticky-navbar .nav-links {
+        position: fixed;
+        top: 50px;
+        left: 0;
+        background-color: var(--accent);
+        color: var(--dark);
+        padding: 20px;
+        padding-bottom: 50px;
+        width: 100%;
+        height: calc(100dvh - 50px);
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 10px;
+    }
     header .nav-links {
         position: fixed;
         top: 105px;
@@ -83,6 +99,29 @@
         padding: 50px 30px;
         overflow-y: scroll;
         padding-top: 100px;
+    }
+
+    /* FOOTER  */
+    footer .footer-tabs {
+        padding: 50px 30px;
+        gap: 70px;
+    }
+    footer .footer-tabs h4 {
+        margin-bottom: 20px;
+    }
+    footer .footer-socials {
+        gap: 30px;
+    }
+
+    /* BREADCRUMB */
+    .bread-crumb img {
+        height: 50dvh; 
+    }
+    .bread-crumb .breadcrumb-content {
+        left: 40%;
+    }
+    .bread-crumb .breadcrumb-content h2 {
+        font-size: 45px;
     }
     
     /* HERO SECTION */
@@ -173,8 +212,54 @@
     .modal-backdrop .add-cart .save-btn {
         margin: 10px 20px;
     }
-    
-    /* * {
+
+    /* NEWSLETTER SECTION */
+    .newsletter-section {
+        padding: 50px 30px;
+    }
+    .newsletter-section h2 {
+        font-size: 30px;
+    }
+    .newsletter-section p {
+        font-size: 16px;
+    }
+    .newsletter-section label {
+        width: 100%;
+    }
+
+    /* TESTIOMONIAL SECTION */
+    .testimonial-section {
+        padding: 50px 0px;
+        padding-bottom: 100px;
+    }
+    .testimonial-section h2 {
+        font-size: 30px;
+    }
+    .testimonial-section .testimonial-slide {
+        padding: 30px 0px;
+    }
+    .testimonial-section .testimonial-slide h4 {
+        font-size: 20px;
+    }
+    .testimonial-section .testimonial-slide .squote {
+        bottom: -100px;
+        right: 0px;
+    }
+
+    /* PRODUCT PAGE */
+    .product-page .product-container {
+        padding: 30px;
+        gap: 30px;
+        grid-template-columns: 1fr;
+    }
+    /* PRODUCT GRID */
+    .product-container .product-grid {
+        gap: 30px;
+        grid-template-columns: 1fr;
+    }
+  
+/*   
+    * {
         outline: red solid 1px;
     } */
 
