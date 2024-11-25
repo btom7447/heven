@@ -1328,7 +1328,7 @@ footer .footer-terms .privacy {
 /* PRODUCT GRID */
 .product-container .product-grid {
   display: grid;
-  gap: 50px 30px;
+  gap: 50px;
   grid-template-columns: 1fr 1fr;
 }
 
