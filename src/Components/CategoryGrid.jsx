@@ -1,29 +1,34 @@
 import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
 import AOS from "aos";
-import "aos/dist/aos.css"; 
-import { BounceLoader } from "react-spinners"; 
+import "aos/dist/aos.css";
+import { BounceLoader } from "react-spinners";
 
-const CategoryGrid = ({ categories, loading
-
- }) => {
-    // Reorder categories to ensure "New Arrival" is the first item
+const CategoryGrid = ({ categories, loading }) => {
     const sortedCategories = [
         ...categories.filter(category => category.name === "New Arrival"),
-        ...categories.filter(category => category.name !== "New Arrival")
+        ...categories.filter(category => category.name !== "New Arrival"),
     ];
 
-    // Initialize AOS
     useEffect(() => {
         AOS.init({
             duration: 1000,
-            once: true, // To trigger the animation only once
-            easing: 'ease-in-out', // Smooth easing for better effect
+            once: true,
+            easing: "ease-in-out",
         });
     }, []);
 
     if (loading) {
         return (
-            <div className="loading-container" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '50vh' }}>
+            <div
+                className="loading-container"
+                style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    height: "50vh",
+                }}
+            >
                 <BounceLoader size={80} color="#cfac9f" />
             </div>
         );
@@ -35,16 +40,19 @@ const CategoryGrid = ({ categories, loading
                 <div
                     key={category.id}
                     className="category-item"
-                    data-aos={index === 0 ? "fade-right" : "zoom-out"} // Conditional AOS animation
+                    data-aos={index === 0 ? "fade-right" : "zoom-out"}
                 >
-                    <img 
-                        src={category.image[0] || ""} 
+                    <img
+                        src={category.image[0] || ""}
                         alt={category.name}
                         className="category-image"
                     />
-                    <button className="category-content">
+                    <Link
+                        to={`/products?category=${encodeURIComponent(category.name)}`} // Pass category in the URL
+                        className="category-content"
+                    >
                         {category.name}
-                    </button>
+                    </Link>
                 </div>
             ))}
         </div>

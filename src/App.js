@@ -13,6 +13,8 @@ import CartPage from './Pages/CartPage';
 import OrderShippingPage from './Pages/OrderShippingPage';
 import WishlistPage from './Pages/WishlistPage';
 import ContactPage from './Pages/ContactPage';
+import AboutPage from './Pages/AboutPage';
+import ScrollToTop from './Components/ScrollToTop';
 
 const App = () => {
   const [user, setUser] = useState(null);
@@ -27,9 +29,11 @@ const App = () => {
   return (
     <div className="App">
       <Router>
+        <ScrollToTop />
         <Header user={user} />
         <Routes>
           <Route path="/" element={<LandingPage />} />
+          <Route path="/about" element={<AboutPage />} />
           <Route path="/user" element={<ProfilePage />} />
           <Route path="/products" element={<ProductPage />} />
           <Route path="/order-shipping" element={<OrderShippingPage />} />

@@ -1,12 +1,43 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import Airtable from 'airtable';
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import '@splidejs/react-splide/css';
 import BounceLoader from "react-spinners/BounceLoader";
 import { StarIcon } from '@heroicons/react/24/solid';
 import { StarIcon as StarOutlineIcon } from '@heroicons/react/24/outline';
 
-const TestimonialSection = ({ reviews, loading }) => { 
-    if (loading) {
+const base = new Airtable({ apiKey: process.env.REACT_APP_AIRTABLE_API_KEY }).base(process.env.REACT_APP_AIRTABLE_BASE_ID);
+
+const TestimonialSection = () => { 
+
+    const [reviews, setReviews] = useState([]);
+    const [loadingReviews, setLoadingReviews] = useState(true);
+
+    useEffect(() => {
+        setLoadingReviews(true);
+        base("Reviews")
+            .select({ view: "Grid view" })
+            .all()
+            .then(records => {
+                const fetchedReviews = records.map(record => ({
+                    id: record.id, // Fixed: Use `record.id` for unique keys
+                    name: record.fields.customer_name,
+                    text: record.fields.review_text,
+                    products: record.fields.reivew_products || [],
+                    rating: record.fields.product_rating,
+                    date: record.fields.review_date,
+                }));
+    
+                setReviews(fetchedReviews);
+                setLoadingReviews(false); // Stop loading after reviews are fetched
+            })
+            .catch(err => {
+                console.error("Error fetching reviews:", err);
+                setLoadingReviews(false); // Stop loading in case of an error
+            });
+    }, []);
+
+    if (loadingReviews) {
         return (
             <div className="loading-container" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '50vh' }}>
                 <BounceLoader size={80} color="#cfac9f" />

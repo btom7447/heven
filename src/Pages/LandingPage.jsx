@@ -98,7 +98,7 @@ const LandingPage = () => {
             <CategoryGrid categories={categories} loading={loadingCategories} />
             <FeaturedProducts products={products} loading={loadingProducts} />
             <NewsLetter />
-            <TestimonialSection reviews={reviews} loading={loadingReviews} />
+            <TestimonialSection />
             
         </div>
     );

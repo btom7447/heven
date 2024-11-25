@@ -382,6 +382,18 @@
         width: 100%;
         padding: 15px;
     }
+    
+    /* ABOUT US PAGE */
+    .story-section {
+        width: 100%;
+        padding: 50px 20px;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto; 
+    }
+    .story-section .poster-item {
+        height: 300px;
+    }
+    
   
   
     

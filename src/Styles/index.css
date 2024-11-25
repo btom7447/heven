@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Catamaran:wght@100..900&display=swapfamily=Montserrat:ital,wght@0,100..900;1,100..900&family=Jost:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Catamaran:wght@100..900&family=Jost:ital,wght@0,100..900;1,100..900&family=Manrope:wght@200..800&family=Satisfy&display=swap');
 
 * {
   padding: 0;
@@ -683,6 +683,7 @@ footer .footer-terms .privacy {
   font-size: 16px;
   font-family: 'Jost', sans-serif;
   cursor: pointer;
+  text-decoration: none;
 }
 .category-content:hover {
   background-color: var(--dark);
@@ -1253,7 +1254,13 @@ footer .footer-terms .privacy {
 
 .product-container .filter-box input {
   width: 100%;
-  padding: 20px;
+  padding: 15px;
+  font-size: 16px;
+  font-weight: 400;
+  font-family: 'Jost', sans-serif;
+  color: var(--dark);
+  border: solid 1px var(--ash);
+  outline: solid 1px var(--ash);
 }
 .product-container .filter-box .name-input {
   background-color: var(--accent);
@@ -1810,6 +1817,138 @@ footer .footer-terms .privacy {
   width: 100%;
   height: 500px;
   z-index: 10 !important;
+}
+
+/* ABOUT US PAGE */
+.story-section {
+  width: 100%;
+  padding: 100px 50px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, auto); 
+  align-items: stretch;
+  gap: 30px;
+  background-color: var(--white); 
+}
+.story-section .story-item {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+.story-section .story-item h2 {
+  line-height: 24px;
+  letter-spacing:  0.01em;
+  font-weight: 600;
+  text-align: left;
+  font-size: 34px;
+  font-family: 'Jost', sans-serif;
+  color: var(--dark);
+  margin-bottom: 20px;
+}
+.story-section .story-item p {
+  line-height: 24px;
+  letter-spacing:  0.01em;
+  font-weight: normal;
+  text-align: left;
+  font-size: 18px;
+  font-family: 'Jost', sans-serif;
+  color: var(--dark);
+  margin-bottom: 10px;
+}
+.story-section .signature {
+  line-height: 24px;
+  letter-spacing:  0.01em;
+  font-weight: normal;
+  text-align: left;
+  font-size: 34px;
+  font-family: 'Satisfy', sans-serif;
+  color: var(--dark);
+  margin-top: 30px;
+  margin-bottom: 10px;
+}
+.story-section .poster-item {
+  width: 100%;
+  height: 400px;
+  position: relative;
+}
+.story-section .story-poster {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.story-section .story-poster img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: 5;
+}
+.story-section .story-poster:hover img {
+  transform: scale(1.1);
+}
+.story-section .poster-item.right {
+  padding-bottom: 6px;
+  padding-left: 6px;
+}
+.story-section .poster-item.left {
+  padding-top: 6px;
+  padding-right: 6px;
+}
+/* RIGHT POSTER */
+.story-section .poster-item.right .x-axis {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 6px;
+  height: 60%;
+  background-color: var(--dark);
+  z-index: 10;
+}
+.story-section .poster-item.right .y-axis {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 60%;
+  height: 6px;
+  background-color: var(--dark);
+  z-index: 10;
+}
+/* LEFT POSTER */
+.story-section .poster-item.left .x-axis {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 60%;
+  height: 6px;
+  background-color: var(--dark);
+  z-index: 10;
+}
+.story-section .poster-item.left .y-axis {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 6px;
+  height: 60%;
+  background-color: var(--dark);
+  z-index: 10;
+}
+.story-section .story-item .vison-mission {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+.story-section .story-item .vison-mission h6 {
+  line-height: 24px;
+  letter-spacing:  0.01em;
+  font-weight: 600;
+  text-align: left;
+  font-size: 24px;
+  font-family: 'Jost', sans-serif;
+  color: var(--dark);
+  margin-bottom: 10px;
 }
 
 /* * {

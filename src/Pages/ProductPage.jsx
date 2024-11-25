@@ -1,22 +1,32 @@
 import React, { useEffect, useState } from "react";
-import ProductFilter from "../Components/ProductFilter";
-import ProductGrid from "../Components/ProductGrid";
+import { useLocation } from "react-router-dom"; // Import useLocation
 import Airtable from "airtable";
 import BreadCrumb from "../Components/BreadCrumb";
+import ProductFilter from "../Components/ProductFilter";
+import ProductGrid from "../Components/ProductGrid";
 import image from "../Assets/Images/hero-image.jpg";
 
-// Airtable base initialization
-const base = new Airtable({ apiKey: process.env.REACT_APP_AIRTABLE_API_KEY }).base(process.env.REACT_APP_AIRTABLE_BASE_ID);
+const base = new Airtable({ apiKey: process.env.REACT_APP_AIRTABLE_API_KEY }).base(
+    process.env.REACT_APP_AIRTABLE_BASE_ID
+);
 
 const ProductPage = () => {
     const [products, setProducts] = useState([]);
     const [filteredProducts, setFilteredProducts] = useState([]);
     const [loadingProducts, setLoadingProducts] = useState(true);
     const [categoryOptions, setCategoryOptions] = useState([]);
-    const [categoryFilter, setCategoryFilter] = useState(""); // For category filtering
-    const [nameFilter, setNameFilter] = useState(""); // For name filtering
+    const [categoryFilter, setCategoryFilter] = useState("");
+    const [nameFilter, setNameFilter] = useState("");
 
-    // Fetch products from Airtable
+    const location = useLocation();
+
+    // Extract initial category filter from the URL
+    useEffect(() => {
+        const params = new URLSearchParams(location.search);
+        const initialCategory = params.get("category") || ""; // Get 'category' from query params
+        setCategoryFilter(initialCategory); // Set the initial category filter
+    }, [location.search]);
+
     useEffect(() => {
         setLoadingProducts(true);
         base("Products")
@@ -33,16 +43,16 @@ const ProductPage = () => {
                     categories: record.fields.product_category_name || [],
                     gender: record.fields.gender || [],
                     featured: record.fields.featured_product,
-                    image: record.fields.images ? record.fields.images.map(img => img.url) : []
+                    image: record.fields.images ? record.fields.images.map(img => img.url) : [],
                 }));
 
                 setProducts(fetchedProducts);
-                setFilteredProducts(fetchedProducts); // Initialize with all products
+                setFilteredProducts(fetchedProducts);
 
-                // Extract unique categories
-                const uniqueCategories = [...new Set(fetchedProducts.flatMap(product => product.categories))];
+                const uniqueCategories = [
+                    ...new Set(fetchedProducts.flatMap(product => product.categories)),
+                ];
                 setCategoryOptions(uniqueCategories);
-
                 setLoadingProducts(false);
             })
             .catch(err => {
@@ -51,20 +61,22 @@ const ProductPage = () => {
             });
     }, []);
 
-    // Dynamically filter products whenever filters change
     useEffect(() => {
-        const filtered = products.filter((product) => {
-            const matchesCategory = categoryFilter ? product.categories.includes(categoryFilter) : true;
-            const matchesName = nameFilter ? product.name.toLowerCase().includes(nameFilter.toLowerCase()) : true;
+        const filtered = products.filter(product => {
+            const matchesCategory = categoryFilter
+                ? product.categories.includes(categoryFilter)
+                : true;
+            const matchesName = nameFilter
+                ? product.name.toLowerCase().includes(nameFilter.toLowerCase())
+                : true;
             return matchesCategory && matchesName;
         });
         setFilteredProducts(filtered);
-    }, [products, categoryFilter, nameFilter]); // Run this filter logic whenever products, categoryFilter, or nameFilter change
+    }, [products, categoryFilter, nameFilter]);
 
-    // Handle filter changes
     const handleFilterChange = ({ category, name }) => {
-        setCategoryFilter(category); // Update category filter
-        setNameFilter(name); // Update name filter
+        setCategoryFilter(category);
+        setNameFilter(name);
     };
 
     return (
@@ -74,6 +86,7 @@ const ProductPage = () => {
                 <ProductFilter
                     onFilterChange={handleFilterChange}
                     categories={categoryOptions}
+                    activeCategory={categoryFilter} // Pass the active category
                 />
                 <ProductGrid products={filteredProducts} loading={loadingProducts} />
             </div>
