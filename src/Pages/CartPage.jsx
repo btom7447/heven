@@ -5,6 +5,7 @@ import CartShipping from "../Components/CartShipping";
 import { BounceLoader } from "react-spinners";
 import image from "../Assets/Images/cart-breadcrumb.jpg";
 import BreadCrumb from "../Components/BreadCrumb";
+import NewsLetter from "../Components/NewsLetter";
 
 const base = new Airtable({ apiKey: process.env.REACT_APP_AIRTABLE_API_KEY }).base(process.env.REACT_APP_AIRTABLE_BASE_ID);
 
@@ -91,6 +92,7 @@ const CartPage = ({ loading }) => {
                         fetchedProducts={fetchedProducts} // Pass fetched products here
                     />
                     <CartShipping cartItems={cartItems} />
+                    <NewsLetter />
                 </>
             )}
         </div>

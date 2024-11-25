@@ -1,0 +1,57 @@
+[
+    {
+        "name": "Duties & Tax",
+        "images": "../Images/duties-tax.jpg", 
+        "text": ["Duties and taxes are additional costs that may apply to your order depending on your location and the destination country’s customs regulations. These charges are usually calculated based on the total value of the items and shipping fees", "Understanding the duties and taxes before making a purchase can help you avoid surprises. Some countries charge VAT (Value Added Tax) on imported goods, while others impose specific tariffs on certain categories of products.", "We recommend checking with your local customs office to get detailed information about applicable charges for your order. Alternatively, our support team is available to guide you through the process.", "For international orders, duties and taxes are typically paid upon delivery. Make sure you are prepared to settle these fees when your package arrives.", "Duties & Tax IllustrationBy streamlining our shipping methods, we aim to minimize these additional costs. Our partners work closely with customs authorities to ensure your package is delivered efficiently."]
+    }, 
+    {
+        "name": "Shipping", 
+        "image": "../Images/shipping.jpg",
+        "text": ["Shipping your order quickly and securely is our top priority. We offer multiple shipping options, including standard and expedited delivery, to suit your needs.", "Once your order is processed, you’ll receive a tracking number that allows you to monitor your package every step of the way. Most orders are dispatched within 1-2 business days.", "Our shipping partners are committed to ensuring your package arrives safely. We carefully pack every item to protect it during transit, reducing the risk of damage.", "If you’re placing an international order, note that delivery times may vary depending on the destination. We recommend opting for tracked shipping services for peace of mind.", "Shipping ProcessPlease refer to our shipping policy for detailed information about costs, delivery times, and restricted regions."
+        ]
+    }, 
+    {
+        "name": "Same Day Delivery", 
+        "image": "../Images/same-day-delivery.jpg", 
+        "text": [
+            "Need your items delivered in a hurry? Our same-day delivery service ensures that your package reaches your doorstep within hours of placing your order.",
+            "This service is currently available in select cities and regions. Orders must be placed before 12:00 PM to qualify for same-day delivery. Any orders received after this time will be delivered the following day.", 
+            "Our team prioritizes same-day delivery orders to ensure a seamless experience. Items are handpicked and sent out immediately after confirmation.",
+            "Same Day Delivery ServiceTo check if your location is eligible, please enter your postal code during checkout. Additional charges may apply for this premium service.",
+            "Experience the convenience of getting your essentials delivered on the same day with our reliable delivery network."
+        ]
+    }, 
+    {
+        "name": "Order Tracking", 
+        "image": "../Images/order-tracking.jpg",
+        "text": [
+            "Stay updated with the status of your order through our tracking system. Once your package is shipped, you’ll receive an email with a tracking link.",
+            "The tracking link provides real-time updates on your package’s location, estimated delivery date, and any delivery exceptions.",
+            "If you encounter any issues with tracking your order, our customer service team is here to assist. Simply provide your order ID, and we’ll help locate your package.",
+            "Order Tracking IllustrationFor international shipments, tracking may take up to 24 hours to reflect in the courier’s system after dispatch.",
+            "Enjoy peace of mind knowing exactly where your order is at all times with our robust tracking tools."
+        ]
+    }, 
+    {
+        "name": "Cancellations", 
+        "image": "../Images/order-cancellation.jpg", 
+        "text": [
+            "Changed your mind? We offer a hassle-free cancellation policy to make your shopping experience smooth and worry-free.",
+            "Orders can be canceled within 24 hours of placement for a full refund. After this period, cancellations may not be possible if the package has already been shipped.",
+            "If you wish to cancel, contact our customer support team with your order ID. We’ll verify the order status and guide you through the process.",
+            "Order Cancellation PolicyFor customized or personalized items, cancellations may not be allowed once production has started. Please review our cancellation policy for more details.",
+            "Your satisfaction is our priority. Reach out to us for any concerns, and we’ll do our best to accommodate your needs."
+        ]
+    }, 
+    {
+        "name": "Customized Items",
+        "image": "../Images/customized-item.jpg", 
+        "text": [
+            "Looking for a unique touch? We offer customization options to make your purchase truly special. Whether it’s engraving, monogramming, or tailored designs, we’ve got you covered.",
+            "Custom orders typically require additional processing time. Please allow 7-10 business days for production before your order is shipped.",
+            "Once your customization is confirmed, our skilled team gets to work. We take great care to ensure every detail meets your expectations.",
+            "Customized Items IllustrationDue to the personalized nature of these products, they are non-refundable and non-cancellable once production has begun.",
+            "Bring your vision to life with our bespoke customization services. Contact us today to discuss your requirements."
+        ]
+    }
+]

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import AuthModal from "./AuthModal";
 import { FaHeart, FaShoppingBasket, FaUser } from "react-icons/fa";
 
@@ -51,10 +51,12 @@ const NavPop = ({ user, setUser }) => {
 
             {/* Wishlist Icon with Count Bubble */}
             <div className="icon-container">
-                <FaHeart className="icon heart-icon w-6 h-6 text-black" />
-                {wishlistCount > 0 && (
-                    <span className="bubble">{wishlistCount}</span>
-                )}
+                <Link to="/wish-list">
+                    <FaHeart className="icon heart-icon w-6 h-6 text-black" />
+                    {wishlistCount > 0 && (
+                        <span className="bubble">{wishlistCount}</span>
+                    )}
+                </Link>
             </div>
 
             {/* Cart Icon with Count Bubble */}

@@ -119,9 +119,11 @@
     }
     .bread-crumb .breadcrumb-content {
         left: 40%;
+        width: 100%;
     }
     .bread-crumb .breadcrumb-content h2 {
-        font-size: 45px;
+        width: 100%;
+        font-size: 35px;
     }
     
     /* HERO SECTION */
@@ -333,6 +335,55 @@
     .cart-shipping label.address-input {
         grid-column: span 1;
     }
+
+    /* ORDER AND SHIPPING  */
+    .order-shipping-container {
+        padding: 20px;
+        gap: 20px;
+        grid-template-columns: 1fr;
+    }
+    .order-shipping-container .order-shipping-display img {
+        width: 100%;
+        height: 200px;
+    }
+
+    /* WISHLIST */
+    .wish-grid {
+        padding: 30px;
+        gap: 30px;
+        grid-template-columns: 1fr;
+    }
+    /* WISH CARD */
+    .wish-card .product {
+        height: 300px;
+        margin-bottom: 20px;
+    }
+
+    /* CONTACT PAGE */
+    .contact-container {
+        padding: 30px 20px;
+        grid-template-columns: 1fr;
+    }
+    .contact-container .contact-card svg {
+        width: 20px;
+        height: 20px;
+    }
+    
+    /* CONTACT FORM */
+    .contact-form {
+        gap: 30px;
+    } 
+    .contact-form label input, 
+    .contact-form label textarea {
+        padding: 10px;
+    }
+    .contact-form .btn-submit {
+        margin-top: 30px;
+        width: 100%;
+        padding: 15px;
+    }
+  
+  
     
     /* * {
         outline: red solid 1px;

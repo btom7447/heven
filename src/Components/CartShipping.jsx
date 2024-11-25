@@ -3,7 +3,6 @@ import Select from "react-select";
 import nigeriaData from "../Data/states-and-cities.json";
 
 const CartShipping = ({ cartItems }) => {
-    const [country] = useState("Nigeria");
     const [statesOptions] = useState(
         nigeriaData.map((state) => ({
             label: state.name,
@@ -82,8 +81,8 @@ const CartShipping = ({ cartItems }) => {
                 </div>
                 <h5>Delivery Contacts</h5>
                 <div className="form-group">
-                    <p>{name ? `Name: ${name}` : <span className="dud">Enter name</span>}</p>
-                    <p>{phone ? `Phone: ${phone}` : <span className="dud">Enter number</span>}</p>
+                    <p>{name ? `Name: ${name}` : <span className="dud"></span>}</p>
+                    <p>{phone ? `Phone: ${phone}` : <span className="dud"></span>}</p>
                 </div>
                 <br /><br />
                 <h5>Delivery Address</h5>

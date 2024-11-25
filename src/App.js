@@ -10,6 +10,9 @@ import ProfilePage from './Pages/ProfilePage';
 import Footer from './Components/Footer';
 import ProductPage from './Pages/ProductPage';
 import CartPage from './Pages/CartPage';
+import OrderShippingPage from './Pages/OrderShippingPage';
+import WishlistPage from './Pages/WishlistPage';
+import ContactPage from './Pages/ContactPage';
 
 const App = () => {
   const [user, setUser] = useState(null);
@@ -29,7 +32,10 @@ const App = () => {
           <Route path="/" element={<LandingPage />} />
           <Route path="/user" element={<ProfilePage />} />
           <Route path="/products" element={<ProductPage />} />
+          <Route path="/order-shipping" element={<OrderShippingPage />} />
           <Route path="/cart" element={<CartPage />} />
+          <Route path="/wish-list" element={<WishlistPage />} />
+          <Route path="/contact" element={<ContactPage />} />
         </Routes>
         <Footer />
       </Router>

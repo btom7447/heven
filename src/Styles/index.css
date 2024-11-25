@@ -157,7 +157,7 @@ header {
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  z-index: 500;
+  z-index: 5000;
 }
 header .top-header {
   position: absolute;
@@ -425,7 +425,7 @@ footer .footer-terms .privacy {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.7);
   z-index: 1; 
 }
 .bread-crumb .breadcrumb-content {
@@ -1108,6 +1108,7 @@ footer .footer-terms .privacy {
   color: var(--black);
   width: 25px;
   height: 25px;
+  cursor: pointer;
 }
 
 /* TESTIOMONIAL SECTION */
@@ -1529,6 +1530,286 @@ footer .footer-terms .privacy {
 }
 .shipping-container .total-calculation button:hover {
   background-color: var(--brown);
+}
+
+/* ORDER AND SHIPPING  */
+.order-shipping-container {
+  width: 100%;
+  padding: 50px;
+  display: grid;
+  grid-template-columns: 1fr 3fr; 
+  gap: 50px;
+}
+.order-shipping-container .order-shipping-tab {
+  height: fit-content;   
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.order-shipping-container .order-shipping-tab ul {
+  height: fit-content;
+  width: fit-content;
+  list-style-type: none;
+}
+.order-shipping-container .order-shipping-tab li { 
+  width: fit-content;
+  font-size: 16px;
+  font-weight: 400;
+  font-family: 'Jost', sans-serif;
+  color: var(--dark);
+  cursor: pointer;
+  margin: 20px 10px;
+  position: relative;
+  padding-bottom: 5px; 
+}
+.order-shipping-container .order-shipping-tab li::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0; 
+  width: 0;  
+  height: 1.5px;
+  background-color: var(--brown);
+  transition: width 0.3s ease; 
+}
+.order-shipping-container .order-shipping-tab li.active {
+  color: var(--brown); 
+}
+.order-shipping-container .order-shipping-tab li.active::after {
+  width: 100%;  
+}
+.order-shipping-container .order-shipping-display {
+  padding: 15px;
+  padding-top: 20px;
+}
+.order-shipping-container .order-shipping-display img {
+  width: 100%;
+  height: 500px;
+  object-position: center;
+  object-fit: cover;
+  margin-bottom: 20px;
+}
+.order-shipping-container .order-shipping-display p {
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight: 400;
+  font-family: 'Jost', sans-serif;
+  color: var(--dark);
+  margin-bottom: 10px;
+}
+
+/* WISHLIST */
+.wish-grid {
+  width: 100%;
+  height: fit-content;
+  padding: 50px;
+  display: grid;
+  gap: 30px;
+  grid-template-columns: repeat(3, 1fr);
+}
+/* WISH CARD */
+.wish-card {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.wish-card .product {
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 30px;
+}
+.wish-card .product-image {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+.wish-card .product:hover img {
+  transform: scale(1.1);
+}
+.wish-card .product-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.wish-card .product:hover::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4); 
+  z-index: 1; 
+  transform: scale(1.1);
+}
+.wish-card .discount-box {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  padding: 10px 20px;
+  background-color: var(--brown);
+  color: var(--white);
+  font-size: 12px;
+  font-family: 'Jost', sans-serif;
+}
+.wish-card .product-options {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  z-index: 5;
+}
+.wish-card .product-options button {
+  border: none;
+  padding: 15px;
+  cursor: pointer;
+  background-color: var(--dark);
+  color: var(--white);
+}
+.wish-card .product-options button:hover {
+  background-color: var(--dark);
+  color: var(--white);
+}
+.wish-card .product-options svg {
+  width: 15px;
+  height: 15px;
+  stroke-width: 0.01 !important;
+  color: var(--white);
+}
+.wish-card h5 {
+  line-height: 24px;
+  letter-spacing:  0.01em;
+  font-weight: 400;
+  text-align: left;
+  font-size: 16px;
+  font-family: 'Jost', sans-serif;
+  color: var(--dark);
+}
+.wish-card .product-prices {
+  display: flex;
+  gap: 1.5rem; 
+  align-items: center;
+}
+.wish-card .original-price {
+  text-decoration: line-through;
+  color: var(--gray);
+  line-height: 24px;
+  letter-spacing:  0.01em;
+  font-weight: 400;
+  text-align: left;
+  font-size: 14px;
+  font-family: 'Jost', sans-serif;
+}
+.wish-card .discounted-price, 
+.wish-card h4 {
+  line-height: 24px;
+  letter-spacing:  0.01em;
+  font-weight: 500;
+  text-align: left;
+  font-size: 16px;
+  font-family: 'Jost', sans-serif;
+  color: var(--dark);
+}
+
+/* CONTACT PAGE */
+.contact-container {
+  padding: 50px;
+  background-color: var(--white);
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 30px;
+}
+.contact-container h5 {
+  line-height: 24px;
+  letter-spacing:  0.01em;
+  font-weight: 600;
+  text-align: left;
+  font-size: 25px;
+  font-family: 'Jost', sans-serif;
+  color: var(--dark);
+  margin-bottom: 20px;
+}
+.contact-container .contact-information {
+  height: fit-content;
+  display: flex;
+  gap: 30px;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 20px;
+  background-color: var(--accent);
+}
+.contact-container .contact-card {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 20px;
+}
+.contact-container .contact-card p {
+  font-size: 18px;
+  font-family: 'Jost', sans-serif;
+  color: var(--dark);
+}
+.contact-container .contact-card .contact-icon {
+  background-color: var(--dark);
+  border-radius: 50%;
+  padding: 10px 12px;
+}
+.contact-container .contact-card svg {
+  width: 30px;
+  height: 30px;
+  color: var(--white);
+}
+
+/* CONTACT FORM */
+.contact-form {
+  height: fit-content;
+  display: flex;
+  gap: 40px;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 20px;
+} 
+.contact-form label {
+  width: 100%;
+}
+.contact-form label input, 
+.contact-form label textarea {
+  width: 100%;
+  padding: 20px;
+  font-size: 18px;
+  font-family: 'Jost', sans-serif;
+  color: var(--dark);
+  outline: none;
+  border: none;
+  border-bottom: solid 1px var(--ash);
+}
+.contact-form .btn-submit {
+  background-color: var(--brown);
+  color: var(--white);
+  padding: 20px;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  font-family: 'Jost', sans-serif;
+}
+.contact-form .btn-submit:hover {
+  background-color: var(--dark);
+  color: var(--white);
+}
+
+/* CONTACT MAP */
+.contact-page .contact-map {
+  width: 100%;
+  height: 500px;
+  z-index: 10 !important;
 }
 
 /* * {
