@@ -410,13 +410,83 @@ footer .footer-terms {
   background-color: transparent;
   border-top: solid 1px var(--gray);
   color: var(--white);
-
 }
 footer .footer-terms .privacy {
   display: flex;
   justify-content: flex-start;
   align-items: center;
   gap: 30px;
+}
+footer .footer-terms button {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-size: 14px;
+  font-family: 'Jost', sans-serif;
+  color: var(--white);
+}
+footer .modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+footer .modal-content {
+  margin-top: 100px;
+  width: 100%;
+  max-width: 500px;
+  height: 70dvh;
+  padding: 30px;
+  background-color: var(--white);
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  overflow-y: scroll;
+}
+footer .modal-content button {
+  border: none;
+  cursor: pointer;
+}
+footer .modal-content .close-button {
+  background-color: var(--accent);
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  width: fit-content;
+  padding: 10px;
+}
+footer .modal-content .close-button svg {
+  width: 25px;
+  height: 25px;
+  color: var(--dark);
+}
+footer .modal-content .close-button:hover {
+  background-color: var(--brown);
+  color: var(--white);
+}
+footer .modal-content .close-button:hover svg {
+  fill: var(--white) !important;
+  color: var(--white) !important;
+}
+footer .modal-content h2 {
+  margin-right: 40px;
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 36px;
+  text-align: center;
+  font-family: 'Jost', sans-serif;
+  color: var(--dark);
+  margin-bottom: 30px;
 }
 
 /* BREADCRUMB */
@@ -470,6 +540,8 @@ footer .footer-terms .privacy {
   align-items: center;
   background-color: rgba(0, 0, 0, 0.6);
   z-index: 1000;
+  width: 100vw; 
+  height: 100vh
 }
 .auth-modal .modal-content {
   width: 100%;

@@ -1,10 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { FaInstagram, FaTiktok, FaFacebookSquare } from 'react-icons/fa';
-import {  PaperAirplaneIcon } from '@heroicons/react/24/solid';
+import { PaperAirplaneIcon } from '@heroicons/react/24/solid';
 import whiteLogo from "../Assets/Images/heven-logo-1.png";
+import PrivacyPolicyModal from "./PrivacyPolicyModal";
+import TermsConditionModal from "./TermsConditionModal";
 
 const Footer = () => {
+    const [showPrivacyPolicy, setShowPrivacyPolicy] = useState(false);
+    const [showTermsCondition, setShowTermsCondition] = useState(false);
+
     return (
         <footer>
             <div className="footer-tabs">
@@ -58,13 +63,23 @@ const Footer = () => {
             </div>
             <div className="footer-terms">
                 <div className="privacy">
-                    <p>Privacy & Policy</p>
-                    <p>Terms & Conditions</p>
+                    <button onClick={() => setShowPrivacyPolicy(true)}>Privacy & Policy</button>
+                    <button onClick={() => setShowTermsCondition(true)}>Terms & Conditions</button>
                 </div>
                 <div className="copyright">
                     <p>©2023 Heven</p>
                 </div>
             </div>
+
+            {/* Modals */}
+            <PrivacyPolicyModal 
+                isOpen={showPrivacyPolicy} 
+                onClose={() => setShowPrivacyPolicy(false)} 
+            />
+            <TermsConditionModal 
+                isOpen={showTermsCondition} 
+                onClose={() => setShowTermsCondition(false)} 
+            />
         </footer>
     );
 };

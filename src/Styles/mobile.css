@@ -129,6 +129,20 @@
         gap: 30px;
     }
 
+    footer .footer-terms {
+        padding: 30px;
+        flex-direction: column;
+        justify-content: center;
+        gap: 20px;
+    }
+    footer .modal-content {
+        margin-top: 80px;
+        width: 90%;
+        max-width: 500px;
+        height: 75dvh;
+        padding: 30px;
+    }
+
     /* BREADCRUMB */
     .bread-crumb img {
         height: 50dvh; 
