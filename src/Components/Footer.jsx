@@ -2,13 +2,14 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { FaInstagram, FaTiktok, FaFacebookSquare } from 'react-icons/fa';
 import {  PaperAirplaneIcon } from '@heroicons/react/24/solid';
+import whiteLogo from "../Assets/Images/heven-logo-1.png";
 
 const Footer = () => {
     return (
         <footer>
             <div className="footer-tabs">
                 <div className="tab">
-                    <h4>Hevens</h4>
+                    <img src={whiteLogo} alt="heven store logos" className="footer-logo" />
                     <ul>
                         <li>
                             <Link to="/about">About Us</Link>

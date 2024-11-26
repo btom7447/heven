@@ -31,7 +31,12 @@
   cursor: pointer;
   background: var(--brown);
 }
-
+.logo img {
+  width: 200px;
+  height: 60px;
+  object-fit: cover;
+  object-position: center;
+}
 .active.logo {
   font-size: 24px;
   font-weight: bold;
@@ -176,7 +181,7 @@ header .navbar {
   position: fixed;
   top: 50px;
   width: 100%;
-  padding: 30px 50px;
+  padding: 10px 50px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -287,6 +292,14 @@ footer .footer-tabs {
   flex-wrap: wrap;
   justify-content: flex-start;
   align-items: flex-start;
+}
+footer .footer-logo {
+  width: 200px;
+  height: 80px;
+  object-fit: cover;
+  object-position: center;
+  margin-left: -28px;
+  margin-top: -20px;
 }
 footer .footer-tabs h4 {
   line-height: 24px;

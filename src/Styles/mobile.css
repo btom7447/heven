@@ -29,9 +29,16 @@
         align-items: center;
         justify-content: space-between
     }
+    .logo img {
+        width: 160px;
+        height: 60px;
+        object-fit: cover;
+        object-position: center;
+        margin-left: -10px;
+    }
     header .sticky-navbar .nav-links {
         position: fixed;
-        top: 50px;
+        top: 80px;
         left: 0;
         background-color: var(--accent);
         color: var(--dark);
@@ -105,6 +112,15 @@
     footer .footer-tabs {
         padding: 50px 30px;
         gap: 70px;
+    }
+    footer .footer-logo {
+        width: 150px;
+        height: 50px;
+        object-fit: cover;
+        object-position: center;
+        margin-left: -20px;
+        margin-top: -20px;
+        margin-bottom: 20px;
     }
     footer .footer-tabs h4 {
         margin-bottom: 20px;

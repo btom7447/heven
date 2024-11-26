@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink,Link } from 'react-router-dom';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/solid';
 import { motion, AnimatePresence } from 'framer-motion';
 import NavPop from './NavPop';
-import AOS from 'aos'; // Import AOS
-import 'aos/dist/aos.css'; // Import AOS styles
+import AOS from 'aos'; 
+import 'aos/dist/aos.css'; 
+import blackLogo from "../Assets/Images/heven-logo-2.png";
+import whiteLogo from "../Assets/Images/heven-logo-1.png";
 
 const Navbar = () => {
   const [user, setUser] = useState(null);
@@ -39,9 +41,13 @@ const Navbar = () => {
       data-aos={isSticky ? 'fade-down' : ''} // Trigger AOS only when sticky
       key={isSticky ? 'sticky' : 'normal'} // Re-trigger AOS animation on sticky change
     >
-      <div className="logo">
-        <h2>Hevens</h2>
-      </div>
+      <Link to="/" className="logo">
+        <img 
+          src={isSticky ? blackLogo : whiteLogo} 
+          alt="Heven Store Logo" 
+          className={`logo-image ${isSticky ? 'black-logo' : 'white-logo'}`} 
+        />
+      </Link>
 
       <div className="hamburger" onClick={toggleMenu}>
         {isMenuOpen ? (
