@@ -18,7 +18,7 @@ const ContactInfo = () => {
                 <div className="contact-icon">
                     <PhoneIcon className="w-6 h-6 text-black" />
                 </div>
-                <p>+234 567 8910</p>
+                <p>+234 810 037 7182</p>
             </div>
 
             <div

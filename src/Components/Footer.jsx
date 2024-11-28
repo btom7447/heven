@@ -34,10 +34,10 @@ const Footer = () => {
                     <h4>Follow Us</h4>
                     <p>Join the Conversation on Social Media</p>
                     <div className="footer-socials">
-                        <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
+                        <a href="https://www.instagram.com/heven_selfcare?igsh=MTF2OGRqdGszczJhdQ==" target="_blank" rel="noopener noreferrer">
                             <FaInstagram className="h-6 w-6 text-gray-800" />
                         </a>
-                        <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">
+                        <a href="https://www.facebook.com/share/15JuWVHskW/?mibextid=LQQJ4d" target='_blank' rel="noreferrer">
                             <FaFacebookSquare className="h-6 w-6 text-gray-800" />
                         </a>
                         <a href="https://www.tiktok.com" target="_blank" rel="noopener noreferrer">

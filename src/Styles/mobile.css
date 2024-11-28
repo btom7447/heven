@@ -36,32 +36,16 @@
         object-position: center;
         margin-left: -10px;
     }
-    header .sticky-navbar .nav-links {
-        position: fixed;
-        top: 80px;
-        left: 0;
-        background-color: var(--accent);
-        color: var(--dark);
-        padding: 20px;
-        padding-bottom: 50px;
-        width: 100%;
-        height: calc(100dvh - 50px);
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: flex-start;
-        gap: 10px;
-    }
     header .nav-links {
         position: fixed;
-        top: 105px;
+        top: 125px;
         left: 0;
         background-color: var(--accent);
         color: var(--dark);
         padding: 20px;
         padding-bottom: 50px;
         width: 100%;
-        height: calc(100dvh - 105px);
+        height: calc(100dvh - 125px);
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
@@ -148,6 +132,7 @@
         height: 50dvh; 
     }
     .bread-crumb .breadcrumb-content {
+        top: 60%;
         left: 40%;
         width: 100%;
     }
@@ -365,7 +350,11 @@
     .cart-shipping label.address-input {
         grid-column: span 1;
     }
-
+    /* COUPON SECTION */
+    .coupon-section {
+        margin: 0px 30px;
+        flex-direction: column;
+    }
     /* ORDER AND SHIPPING  */
     .order-shipping-container {
         padding: 20px;

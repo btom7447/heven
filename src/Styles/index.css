@@ -1468,14 +1468,64 @@ footer .modal-content h2 {
   object-fit: cover;
 }
 .cart-product-details .cancel-order {
-  border: none;
-  background-color: transparent;
+  padding: 10px;
+  border: solid 1px var(--dark);
+  background-color: var(--dark);
+  color: var(--white);
   cursor: pointer;
+}
+.cart-product-details .cancel-order:hover {
+  background-color: var(--brown);
 }
 .cart-product-details svg {
   width: 20px;
   height: 20px;
 }
+
+/* COUPON SECTION */
+.coupon-section {
+  margin: -70px 50px -20px 50px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+}
+.coupon-section svg {
+  width: 20px;
+  height: 20px;
+  color: var(--dark);
+}
+.coupon-section label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+.coupon-section input {
+  width: 100%;
+  padding: 12px 40px 12px 12px;
+  border: 1px solid var(--ash);
+  outline: none;
+  font-size: 14px;
+  font-family: 'Jost', sans-serif;
+  font-weight: normal;
+}
+.coupon-section button {
+  border: none;
+  padding: 15px;
+  cursor: pointer;
+  background-color: var(--dark);
+  color: var(--white);
+  text-transform: uppercase;
+  letter-spacing: 0.9px;
+  font-weight: normal;
+  font-size: 12px;
+}
+.coupon-section button:hover {
+  background-color: var(--brown);
+}
+
 /* SHIPPING SECTION */
 .shipping-container {
   width: 100%;

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { toast } from "react-toastify";
 import Airtable from "airtable";
 import CartProductDetails from "../Components/CartProductDetails";
 import CartShipping from "../Components/CartShipping";
@@ -6,14 +7,19 @@ import { BounceLoader } from "react-spinners";
 import image from "../Assets/Images/cart-breadcrumb.jpg";
 import BreadCrumb from "../Components/BreadCrumb";
 import NewsLetter from "../Components/NewsLetter";
+import CouponSection from "../Components/CoupounSection";
 
 const base = new Airtable({ apiKey: process.env.REACT_APP_AIRTABLE_API_KEY }).base(process.env.REACT_APP_AIRTABLE_BASE_ID);
 
 const CartPage = ({ loading }) => {
-    const [fetchedProducts, setFetchedProducts] = useState([]); // Fetch products in this component
+    const [fetchedProducts, setFetchedProducts] = useState([]);
     const [loadingProducts, setLoadingProducts] = useState(false);
+    const [fetchedCoupons, setFetchedCoupons] = useState([]);
     const [cartItems, setCartItems] = useState([]);
+    const [couponCode, setCouponCode] = useState("");
+    const [appliedCoupon, setAppliedCoupon] = useState(null);
 
+    // Fetch products from Airtable
     useEffect(() => {
         setLoadingProducts(true);
         base("Products")
@@ -41,20 +47,76 @@ const CartPage = ({ loading }) => {
                 console.error("Error fetching products:", err);
                 setLoadingProducts(false);
             });
-    }, []); // Fetch products only once when component mounts
+    }, []);
 
+    // Fetch coupons
     useEffect(() => {
-        // Load cart from sessionStorage on initial render
+        base("Coupon")
+            .select({ view: "Grid view" })
+            .all()
+            .then((records) => {
+                const coupons = records.map((record) => ({
+                    id: record.id,
+                    code: record.fields.coupon_code,
+                    discountPercent: record.fields.coupon_discount,
+                    limit: record.fields.coupon_limit,
+                    startDate: record.fields.start_date,
+                    endDate: record.fields.end_date,
+                }));
+                setFetchedCoupons(coupons);
+            })
+            .catch((err) => console.error("Error fetching coupons:", err));
+    }, []);
+
+    // Load cart from sessionStorage
+    useEffect(() => {
         const storedCart = JSON.parse(sessionStorage.getItem("cart")) || [];
         setCartItems(storedCart);
     }, []);
 
-    // Helper to update cart both in state and sessionStorage
+    // Update cart in state and sessionStorage
     const updateCart = (updatedCart) => {
         setCartItems(updatedCart);
         sessionStorage.setItem("cart", JSON.stringify(updatedCart));
     };
 
+    const applyCoupon = (couponCode) => {
+        const coupon = fetchedCoupons.find((c) => c.code === couponCode);
+    
+        if (!coupon) {
+            toast.error("Sorry, code expired or invalid.", {
+                autoClose: 3000,
+            });
+            return;
+        }
+    
+        const today = new Date();
+        const startDate = new Date(coupon.startDate);
+        const endDate = new Date(coupon.endDate);
+    
+        // Format start date to a user-friendly format
+        const formattedStartDate = new Intl.DateTimeFormat("en-US", {
+            weekday: "long",
+            day: "numeric",
+            month: "short",
+            year: "numeric",
+        }).format(startDate);
+    
+        if (today < startDate || today > endDate) {
+            toast.error(`Coupon coming soon - ${formattedStartDate}.`, {
+                autoClose: 3000,
+            });
+            return;
+        }
+    
+        // Set the coupon discount value only, not the entire coupon object
+        setAppliedCoupon(coupon);
+        toast.success("Success! Your discount has been applied.", {
+            autoClose: 3000,
+        });
+    };    
+
+    // Handle quantity changes
     const handleIncreaseQuantity = (id) => {
         const updatedCart = cartItems.map((item) =>
             item.id === id
@@ -79,19 +141,36 @@ const CartPage = ({ loading }) => {
         <div className="cart-page">
             <BreadCrumb name="Shopping Cart" image={image} />
             {loading || loadingProducts ? (
-                <div className="loading-container" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '50vh' }}>
+                <div
+                    className="loading-container"
+                    style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        height: "50vh",
+                    }}
+                >
                     <BounceLoader size={80} color="#cfac9f" />
                 </div>
             ) : (
                 <>
                     <CartProductDetails
                         cartItems={cartItems}
-                        setCartItems={setCartItems}
+                        setCartItems={setCartItems} 
                         handleIncreaseQuantity={handleIncreaseQuantity}
                         handleDecreaseQuantity={handleDecreaseQuantity}
-                        fetchedProducts={fetchedProducts} // Pass fetched products here
+                        fetchedProducts={fetchedProducts}
                     />
-                    <CartShipping cartItems={cartItems} />
+                    <CouponSection
+                        applyCoupon={applyCoupon}
+                        couponCode={couponCode}
+                        setCouponCode={setCouponCode}
+                        appliedCoupon={appliedCoupon}
+                    />
+                    <CartShipping
+                        cartItems={cartItems}
+                        appliedCoupon={appliedCoupon}
+                    />
                     <NewsLetter />
                 </>
             )}

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Select from "react-select";
 import nigeriaData from "../Data/states-and-cities.json";
 
-const CartShipping = ({ cartItems }) => {
+const CartShipping = ({ cartItems, appliedCoupon = {} }) => {
     const [statesOptions] = useState(
         nigeriaData.map((state) => ({
             label: state.name,
@@ -47,30 +47,32 @@ const CartShipping = ({ cartItems }) => {
 
     // Calculate subtotal
     const subTotal = cartItems.reduce((acc, item) => {
-        // Ensure price, discount, and order_quantity exist and are valid
-        const price = item.price || 0; // Default to 0 if price is invalid
-        const discount = item.discount || 0; // Default to 0 if discount is invalid
-        const orderQuantity = item.order_quantity || 0; // Default to 0 if quantity is invalid
-
-        // Validate that the price and quantity are valid numbers
-        if (typeof price === "number" && typeof orderQuantity === "number") {
-            const productPrice = price - price * discount;
-            return acc + productPrice * orderQuantity;
-        }
-        return acc; // Return accumulated value if any item has invalid data
+        const price = item.price || 0;
+        const discount = item.discount || 0;
+        const orderQuantity = item.order_quantity || 0;
+        const productPrice = price - price * discount;
+        return acc + (productPrice * orderQuantity);
     }, 0);
 
     const delivery = 3000;
 
-    // Calculate grand total
-    const grandTotal = subTotal + delivery;
+    // Apply coupon logic (convert appliedCoupon to percentage)
+    const couponDiscount = 
+        (appliedCoupon?.discountPercent > 0 && appliedCoupon?.discountPercent <= 1)
+        ? subTotal * appliedCoupon.discountPercent
+        : 0;
+    const grandTotal = subTotal - couponDiscount + delivery;
 
     const formatPrice = (price) => {
-        return price.toLocaleString("en-NG", {
-            style: "currency",
-            currency: "NGN",
-            minimumFractionDigits: 2,
-        });
+        if (price != null && !isNaN(price)) {
+            return price.toLocaleString("en-NG", {
+                style: "currency",
+                currency: "NGN",
+                minimumFractionDigits: 2,
+            });
+        } else {
+            return "₦0.00";
+        }
     };
 
     return (
@@ -147,7 +149,7 @@ const CartShipping = ({ cartItems }) => {
                         <Select
                             options={cityOptions}
                             onChange={handleCityChange}
-                            placeholder="Select a state first"
+                            placeholder="Select a city first"
                             isDisabled={!cityOptions.length}
                             className="cart-select"
                             classNames={{
@@ -175,6 +177,9 @@ const CartShipping = ({ cartItems }) => {
                     </div>
                     <div className="calculate">
                         <h6>Delivery:</h6> <h6>{formatPrice(delivery)}</h6>
+                    </div>
+                    <div className="calculate">
+                        <h6>Coupon Discount:</h6>- <h6>{formatPrice(couponDiscount)}</h6> 
                     </div>
                     <div className="calculate">
                         <h5>Grand Total:</h5> <h5>{formatPrice(grandTotal)}</h5>
